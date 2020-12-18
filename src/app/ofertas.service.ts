@@ -1,6 +1,7 @@
 import {OfertaModel} from './shared/oferta.model';
 import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {subscribeToPromise} from 'rxjs/internal-compatibility';
 
 @Injectable()
 export class OfertasService {
@@ -23,7 +24,15 @@ export class OfertasService {
       } else {
         reject({codigoErro: 404, mensagemDeErro: 'Servidor não encontrado'});
       }
+
     });
+
+  }
+
+  getOfertasPorCategoria(categoria: string) : Promise<OfertaModel[]> {
+    return (this.http.get('http://localhost:3000/ofertas?categoria='+categoria)
+      .toPromise()
+      .then((resposta:any) => resposta))
   }
 
 

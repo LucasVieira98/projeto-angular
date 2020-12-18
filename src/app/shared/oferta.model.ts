@@ -5,7 +5,7 @@ export class OfertaModel {
   id: number;
   categoria: string;
   titulo: string;
-  descricaoOferta: string;
+  descricao_oferta: string;
   anunciante: string;
   valor: number
   destaque: boolean;
