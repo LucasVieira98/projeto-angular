@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -13,6 +13,15 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
+import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
+import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
+
+//pipe
+import { DescricaoReduzidaPipe } from '../util/descricao-reduzida.pipe';
+
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -22,7 +31,10 @@ import { OfertaComponent } from './oferta/oferta.component';
     RodapeComponent,
     RestaurantesComponent,
     DiversaoComponent,
-    OfertaComponent
+    OfertaComponent,
+    ComoUsarComponent,
+    OndeFicaComponent,
+    DescricaoReduzidaPipe
   ],
   imports: [
     BrowserModule,
@@ -30,7 +42,9 @@ import { OfertaComponent } from './oferta/oferta.component';
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
